@@ -1,0 +1,2 @@
+/// @description Coyote
+coyoteActive = false;
