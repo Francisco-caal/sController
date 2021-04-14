@@ -4,9 +4,9 @@ if(dead){
 }
 
 if(active){
-	var right = keyboard_check(vk_right);
-	var left = keyboard_check(vk_left);
-	var jump = keyboard_check_pressed(ord("X"));
+	var right = keyboard_check(rightButton);
+	var left = keyboard_check(leftButton);
+	var jump = keyboard_check_pressed(jumpButton);
 	
 	var directionX = right - left;
 	
@@ -23,7 +23,7 @@ if(active){
 	
 	var executeJump = false;
 	if(jump){
-		if(actorOnGround || coyoteActive){		
+		if(actorOnGround || coyoteIsActive){		
 			executeJump = true;
 		}else if(wallJumpAvailable){
 			executeJump = true;

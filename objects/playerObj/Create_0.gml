@@ -1,21 +1,9 @@
-/// @description Insert description here
+/// @description
+
+//Controls
+//E.g. you could assign the buttons from a global settings object
+rightButton = vk_right;
+leftButton = vk_left;
+jumpButton = ord("X");
 
 event_inherited();
-
-jumping = false;
-
-active = true;
-dead = false;
-
-coyoteAvailable = false;
-coyoteActive = false;
-coyoteTime = 1;
-
-jumpBufferAvailable = false
-jumpBufferActive = false;
-jumpBufferTime = 3;
-
-wallSlideFactor = .1;
-wallJumpAvailable = false;
-wallJumpUsed = false;
-wallJumpSpeed = maxSpeed * 2.5;

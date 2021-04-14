@@ -1,2 +1,2 @@
 /// @description Coyote
-coyoteActive = false;
+coyoteIsActive = false;

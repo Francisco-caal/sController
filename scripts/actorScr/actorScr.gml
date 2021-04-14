@@ -36,7 +36,7 @@ function actorMoveX(_value, _reminder, _colliders){
 	return _reminder;
 }
 
-function actorMoveY(_value, _reminder, _colliders){
+function actorMoveY(_value, _reminder, _colliders, _correction){
 	var _move = _value + _reminder;
 	_reminder = _move - floor(_move);
 	
@@ -52,12 +52,35 @@ function actorMoveY(_value, _reminder, _colliders){
 			if(_n > 0){
 				for(var _i = 0; _i < _n; _i++){
 					if(ds_list_find_value(_list, _i).collide){
-						speedY = 0;
-						_reminder = 0;
+						var _right = 0;
+						var _left = 0;
+						
+						if(_sign < 0){
+							for(var _j = 0; _j < _correction; _j++){
+								if(place_empty(x + _j, y + _sign, _colliders) && !_right){
+									_right = _j;
+								}
+								
+								if(place_empty(x - _j, y + _sign, _colliders) && !_left){
+									_left = -_j;
+								}
+							}
+						}
+						
+						if(_right == 0 && _left == 0){
+							speedY = 0;
+							_reminder = 0;
 				
-						collision = true;
-						_collision = true;
-						break;
+							collision = true;
+							_collision = true;
+							break;
+						}else{
+							if(abs(_right) > abs(_left)){
+								x += _left == 0 ? _right : _left;
+							}else{
+								x += _right == 0 ? _left : _right;
+							}
+						}
 					}
 				}
 			}

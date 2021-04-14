@@ -32,7 +32,11 @@
     {"isDnD":false,"eventNum":1,"eventType":2,"collisionObjectId":null,"parent":{"name":"playerObj","path":"objects/playerObj/playerObj.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"propertyId":{"name":"useCoyoteTime","path":"objects/actorObj/actorObj.yy",},"objectId":{"name":"actorObj","path":"objects/actorObj/actorObj.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+    {"propertyId":{"name":"coyoteDurationInSeconds","path":"objects/actorObj/actorObj.yy",},"objectId":{"name":"actorObj","path":"objects/actorObj/actorObj.yy",},"value":"0.05","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+    {"propertyId":{"name":"jumpCornerCorrection","path":"objects/actorObj/actorObj.yy",},"objectId":{"name":"actorObj","path":"objects/actorObj/actorObj.yy",},"value":"4","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+  ],
   "parent": {
     "name": "Objects",
     "path": "folders/sController/Objects.yy",
