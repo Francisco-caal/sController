@@ -15,8 +15,8 @@ moveY = 0;
 speedY = 0;
 reminderY = 0;
 
-maxSpeed = 1;
-acceleration = .4;
+maxSpeed = 2;
+acceleration = .5;
 //@variable maxJumpLength what's the maximum the player should be able to jump horizontally in a flat surface, I use a formula of N tiles * tile width
 //@variable maxJumpHeight what's the maximum the player should be able to jump vertically, I use a formula of N tiles * tile height
 actorGravity = defineGravity(maxJumpLength, maxSpeed, maxJumpHeight);

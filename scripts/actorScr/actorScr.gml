@@ -54,41 +54,35 @@ function actorMoveY(_value, _reminder, _colliders, _correction){
 					if(ds_list_find_value(_list, _i).collide){
 						var _right = 0;
 						var _left = 0;
-						
-						if(_sign < 0){
-							for(var _j = 0; _j < _correction; _j++){
-								if(place_empty(x + _j, y + _sign, _colliders) && !_right){
-									_right = _j;
-								}
-								
-								if(place_empty(x - _j, y + _sign, _colliders) && !_left){
-									_left = -_j;
-								}
+						//We correct corner when defined and we are going up only
+						if(_sign < 0 && _correction != 0){ 
+							//Loop to find the closest corner
+							for(var _j = 0; _j < _correction; _j++){ 
+								if(place_empty(x + _j, y + _sign, _colliders)) _right = _j;
+								if(place_empty(x - _j, y + _sign, _colliders)) _left = -_j;
+								//if we have found the closest corner exit the loop
+								if(_right != 0 && _left != 0) break;
 							}
 						}
-						
+						//If we haven't found a corner or corner correction is not active, exit the loop and stop the actor
 						if(_right == 0 && _left == 0){
-							speedY = 0;
-							_reminder = 0;
-				
-							collision = true;
 							_collision = true;
 							break;
 						}else{
-							if(abs(_right) > abs(_left)){
-								x += _left == 0 ? _right : _left;
-							}else{
-								x += _right == 0 ? _left : _right;
-							}
+							//Otherwise correct the position to the closest corner
+							x += (_right != 0) ? _right : _left;
 						}
 					}
 				}
 			}
 			
-			if(!_collision){
+			if(!_collision){ //Not collided, keep moving
 				y += _sign;
 				_move -= _sign;
-			}else{
+			}else{ //Collided, stop the actor & exit the loop
+				speedY = 0;
+				_reminder = 0;
+				collision = true;
 				break;
 			}
 		}
