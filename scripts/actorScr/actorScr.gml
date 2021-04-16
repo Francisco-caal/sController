@@ -96,17 +96,26 @@ function onGround(_x, _y, _colliders){
 	return place_meeting(_x, _y + 1, _colliders);
 }
 
-function onWall(_x, _y, _colliders, _side){
-	var threshold = 1;
-	if(_side != undefined){
-		if(_side == "left"){
-			return place_meeting(_x - threshold, _y, _colliders);
-		}else if(_side == "right"){
-			return place_meeting(_x + threshold, _y, _colliders);
+function onWall(_x, _y, _colliders){
+	return place_meeting(_x + 1, _y, _colliders) || place_meeting(_x - 1, _y, _colliders);
+}
+
+function wallJumpLeft(_x, _y, _colliders, _caller){
+	var _threshold = -(_caller.wallJumpDistance > 0 ? _caller.wallJumpDistance + 1 : 1);
+	return onWallWithThreshold(_x, _y, _colliders, _threshold);
+}
+function wallJumpRight(_x, _y, _colliders, _caller){
+	var _threshold = _caller.wallJumpDistance > 0 ? _caller.wallJumpDistance + 1 : 1;
+	return onWallWithThreshold(_x, _y, _colliders, _threshold);
+}
+function onWallWithThreshold(_x, _y, _colliders, _threshold){
+	for(var _i = 1; _i <= abs(_threshold); _i++){
+		if(place_meeting(_x + sign(_threshold) * _i, _y, _colliders)){
+			return true;
 		}
 	}
 	
-	return place_meeting(_x + threshold, _y, _colliders) || place_meeting(_x - threshold, _y, _colliders);
+	return false;
 }
 
 function defineGravity(maxDistance, maxSpeed, maxHeight){

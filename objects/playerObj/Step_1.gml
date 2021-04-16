@@ -25,12 +25,10 @@ if(active){
 			speedX += directionX * acceleration;
 			speedX = clamp(speedX, -maxSpeed, maxSpeed);
 		}else{
-			if(!wallJumpUsed || (wallJumpUsed && speedY > 0)){
-				if(abs(speedX) > acceleration){
-					speedX -= sign(speedX) * acceleration;
-				}else{
-					speedX = 0;
-				}
+			if(abs(speedX) > acceleration){
+				speedX -= sign(speedX) * acceleration;
+			}else{
+				speedX = 0;
 			}
 		}
 	}
@@ -44,11 +42,15 @@ if(active){
 			wallJumpUsed = true;
 			wallJumpAvailable = false;
 			
-			if(onWall(x, y, solidObj, "left")){
+			if(wallJumpLeft(x, y, solidObj, self)){
 				speedX = wallJumpSpeed;
-			}else{
+			}else if(wallJumpRight(x, y, solidObj, self)){
 				speedX = -wallJumpSpeed;
+			}else{
+				executeJump = false;
 			}
+			
+			show_debug_message(speedX);
 		}else if(jumpBufferAvailable){ //If useJumpBuffer is off this should never be true
 			jumpBufferAvailable = false;
 			jumpBufferActive = true;

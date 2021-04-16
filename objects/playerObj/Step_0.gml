@@ -26,7 +26,7 @@ if(actorOnGround){ //We are on ground
 	}
 }else{ //We are in the air
 	//Coyote
-	if(useCoyoteTime && falling){
+	if(useCoyoteTime && falling && !jumping){
 		if(!coyoteIsActive && coyoteIsAvailable){
 			coyoteIsActive = true;
 			coyoteIsAvailable = false;
@@ -42,11 +42,13 @@ if(actorOnGround){ //We are on ground
 	}
 	//Wall jumping
 	if(useWallJump){
-		if(actorOnWall){
-			wallJumpUsed = false;
-			wallJumpAvailable = true;
-		}else{
-			wallJumpAvailable = false;
+		if(!wallJumpUsed || wallJumpUsed && speedY > 0){
+			if(wallJumpLeft(x, y, solidObj, self) || wallJumpRight(x, y, solidObj, self)){
+				wallJumpUsed = false;
+				wallJumpAvailable = true;
+			}else{
+				wallJumpAvailable = false;
+			}
 		}
 	}
 }

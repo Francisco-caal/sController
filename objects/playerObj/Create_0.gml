@@ -22,6 +22,7 @@ coyoteIsAvailable = false;
 coyoteIsActive = false;
 //Wall jump
 //@variable useWallJump defines if it's active
+//@variable wallJumpRoom we allow the player to wall jump N pixels from the wall
 wallJumpAvailable = false;
 wallJumpUsed = false;
 wallJumpSpeed = maxSpeed;
