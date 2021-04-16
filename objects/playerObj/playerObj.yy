@@ -31,12 +31,16 @@
     {"isDnD":false,"eventNum":0,"eventType":2,"collisionObjectId":null,"parent":{"name":"playerObj","path":"objects/playerObj/playerObj.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":1,"eventType":2,"collisionObjectId":null,"parent":{"name":"playerObj","path":"objects/playerObj/playerObj.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
-  "properties": [],
-  "overriddenProperties": [
-    {"propertyId":{"name":"useCoyoteTime","path":"objects/actorObj/actorObj.yy",},"objectId":{"name":"actorObj","path":"objects/actorObj/actorObj.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
-    {"propertyId":{"name":"coyoteDurationInSeconds","path":"objects/actorObj/actorObj.yy",},"objectId":{"name":"actorObj","path":"objects/actorObj/actorObj.yy",},"value":"0.05","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
-    {"propertyId":{"name":"jumpCornerCorrection","path":"objects/actorObj/actorObj.yy",},"objectId":{"name":"actorObj","path":"objects/actorObj/actorObj.yy",},"value":"4","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+  "properties": [
+    {"varType":1,"value":"4","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"jumpCornerCorrection","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":3,"value":"True","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"useCoyoteTime","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":0,"value":"0.05","rangeEnabled":true,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"coyoteDurationInSeconds","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":3,"value":"True","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"useJumpBuffer","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":0,"value":"0.05","rangeEnabled":true,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"jumpBufferDurationInSeconds","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":3,"value":"True","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"useWallJump","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":0,"value":"0.1","rangeEnabled":false,"rangeMin":0.0,"rangeMax":1.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"wallFrictionFactor","tags":[],"resourceType":"GMObjectProperty",},
   ],
+  "overriddenProperties": [],
   "parent": {
     "name": "Objects",
     "path": "folders/sController/Objects.yy",

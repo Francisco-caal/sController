@@ -1,4 +1,4 @@
-function actorMoveX(_value, _reminder, _colliders){
+function actorMoveX(_value, _reminder, _colliders, _caller){
 	var _move = _value + _reminder;
 	_reminder = _move - floor(_move);
 	
@@ -36,7 +36,8 @@ function actorMoveX(_value, _reminder, _colliders){
 	return _reminder;
 }
 
-function actorMoveY(_value, _reminder, _colliders, _correction){
+function actorMoveY(_value, _reminder, _colliders, _caller){
+	var _correction = is_undefined(_caller.jumpCornerCorrection) ? 0 : _caller.jumpCornerCorrection;
 	var _move = _value + _reminder;
 	_reminder = _move - floor(_move);
 	

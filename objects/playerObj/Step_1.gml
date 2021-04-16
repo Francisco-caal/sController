@@ -10,20 +10,34 @@ if(active){
 	
 	var directionX = right - left;
 	
-	if(directionX != 0){
-		speedX += directionX * acceleration;
-		speedX = clamp(speedX, -maxSpeed, maxSpeed);
-	}else{
-		if(abs(speedX) > acceleration){
-			speedX -= sign(speedX) * acceleration;
+	
+	var directionUnlocked = true;
+	//If we are using wall jump we lock the direction controls while the player is going up
+	//We do this to avoid wall jumping on one wall, this can be deactivated to modify the behaviour
+	if(useWallJump){
+		if(wallJumpUsed && speedY < 0){
+			directionUnlocked = false;
+		}
+	}
+	
+	if(directionUnlocked){
+		if(directionX != 0){
+			speedX += directionX * acceleration;
+			speedX = clamp(speedX, -maxSpeed, maxSpeed);
 		}else{
-			speedX = 0;
+			if(!wallJumpUsed || (wallJumpUsed && speedY > 0)){
+				if(abs(speedX) > acceleration){
+					speedX -= sign(speedX) * acceleration;
+				}else{
+					speedX = 0;
+				}
+			}
 		}
 	}
 	
 	var executeJump = false;
 	if(jump){
-		if(actorOnGround || coyoteIsActive){		
+		if(actorOnGround || coyoteIsActive){ //If useCoyoteTime is off this should never be true
 			executeJump = true;
 		}else if(wallJumpAvailable){
 			executeJump = true;
@@ -31,16 +45,16 @@ if(active){
 			wallJumpAvailable = false;
 			
 			if(onWall(x, y, solidObj, "left")){
-				speedX = wallJumpSpeed;;
+				speedX = wallJumpSpeed;
 			}else{
 				speedX = -wallJumpSpeed;
 			}
-		}else if(jumpBufferAvailable){
+		}else if(jumpBufferAvailable){ //If useJumpBuffer is off this should never be true
 			jumpBufferAvailable = false;
 			jumpBufferActive = true;
-			alarm_set(1, jumpBufferTime);
+			alarm_set(1, jumpBufferDurationInSeconds);
 		}
-	}else if(jumpBufferActive && actorOnGround){
+	}else if(jumpBufferActive && actorOnGround){ //If useJumpBuffer is off this should never be true
 		executeJump = true;
 		
 		jumpBufferActive = false;
@@ -54,10 +68,10 @@ if(active){
 	}
 	
 	moveX = speedX;
-	
-	if(actorOnWall && speedY > 0){
-		speedY += actorGravity * wallSlideFactor;
-	}else{
+	//Use limited gravity when falling touching a wall
+	if(wallFrictionFactor > 0 && actorOnWall && speedY > 0){
+		speedY += actorGravity * wallFrictionFactor;
+	}else{ //Normal gravity
 		speedY += actorGravity;
 	}
 	moveY = speedY;
